@@ -1,5 +1,5 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "Plack response with automatic encoding feature",
    "author" : [
       "ytnobody <ytnobody@gmail.com>"
    ],

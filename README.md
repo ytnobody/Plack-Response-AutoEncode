@@ -1,6 +1,6 @@
 # NAME
 
-Plack::Response::AutoEncode - It's new $module
+Plack::Response::AutoEncode - Plack response with automatic encoding feature
 
 # SYNOPSIS
 

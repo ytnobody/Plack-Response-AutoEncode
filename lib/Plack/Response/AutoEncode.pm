@@ -34,7 +34,7 @@ __END__
 
 =head1 NAME
 
-Plack::Response::AutoEncode - It's new $module
+Plack::Response::AutoEncode - Plack response with automatic encoding feature
 
 =head1 SYNOPSIS
 

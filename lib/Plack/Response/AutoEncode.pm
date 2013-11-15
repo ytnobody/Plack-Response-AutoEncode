@@ -32,16 +32,15 @@ sub finalize {
 sub _encode_gracefully {
     my ($self, $charset, $str) = @_;
 
-    my $is_utf8  = Encode::is_utf8($str);
     $self->{encoding} = Encode::find_encoding($charset);
     unless ($self->{encoding}) {
         Carp::carp qq![Error] Invalid charset was detected ("$charset")!;
 
-        # If $str is perl-string, return it that is encoded by UTF-8 for the time being...
-        return $is_utf8 ? Encode::encode('utf8', $str) : $str;
+        # $str is must perl-string. Return it that is encoded by UTF-8 for the time being unless defined 'encoding'...
+        return Encode::encode('utf8', $str);
     }
 
-    $is_utf8 ? $self->{encoding}->encode($str) : $str;
+    $self->{encoding}->encode($str);
 }
 
 sub _build_content_type {

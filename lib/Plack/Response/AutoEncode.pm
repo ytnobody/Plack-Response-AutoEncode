@@ -18,6 +18,12 @@ sub finalize {
                 $self->_encode_gracefully( $self->content )
             ;
             $self->content($content);
+
+            if ($self->{encoding}) {
+                $data->{attributes}{charset} = $self->{encoding}->mime_name;
+            }
+
+            $self->headers->{'content-type'} = $self->_build_content_type($data);
         }
     }
     $self->SUPER::finalize(@_);
@@ -27,17 +33,26 @@ sub _encode_gracefully {
     my ($self, $charset, $str) = @_;
 
     my $is_utf8  = Encode::is_utf8($str);
-    my $encoding = Encode::find_encoding($charset);
-    unless ($encoding) {
+    $self->{encoding} = Encode::find_encoding($charset);
+    unless ($self->{encoding}) {
         Carp::carp qq![Error] Invalid charset was detected ("$charset")!;
 
         # If $str is perl-string, return it that is encoded by UTF-8 for the time being...
         return $is_utf8 ? Encode::encode('utf8', $str) : $str;
     }
 
-    $is_utf8 ? $encoding->encode($str) : $str;
+    $is_utf8 ? $self->{encoding}->encode($str) : $str;
 }
 
+sub _build_content_type {
+    my ($self, $data) = @_;
+
+    my $content_type_str = "$data->{type}/$data->{subtype}";
+    for my $k (keys %{$data->{attributes}}) {
+        $content_type_str .= ";$k=$data->{attributes}->{$k}";
+    }
+    return $content_type_str;
+}
 1;
 __END__
 

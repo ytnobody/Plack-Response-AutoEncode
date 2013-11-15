@@ -47,7 +47,7 @@ sub _encode_gracefully {
 sub _build_content_type {
     my ($self, $data) = @_;
 
-    my $content_type_str = "$data->{type}/$data->{subtype}";
+    my $content_type_str = "$data->{discrete}/$data->{composite}";
     for my $k (keys %{$data->{attributes}}) {
         $content_type_str .= ";$k=$data->{attributes}->{$k}";
     }

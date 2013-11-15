@@ -2,6 +2,7 @@ package Plack::Response::AutoEncode;
 use strict;
 use warnings;
 use parent 'Plack::Response';
+use Carp ();
 use Email::MIME::ContentType () ;
 use Encode;
 our $VERSION = "0.01";
@@ -25,13 +26,16 @@ sub finalize {
 sub _encode_gracefully {
     my ($self, $charset, $str) = @_;
 
+    my $is_utf8  = Encode::is_utf8($str);
     my $encoding = Encode::find_encoding($charset);
     unless ($encoding) {
-        $self->status(500);
-        return 'Invalid charset was detected';
+        Carp::carp qq![Error] Invalid charset was detected ("$charset")!;
+
+        # If $str is perl-string, return it that is encoded by UTF-8 for the time being...
+        return $is_utf8 ? Encode::encode('utf8', $str) : $str;
     }
 
-    Encode::is_utf8($str) ? $encoding->encode($str) : $str;
+    $is_utf8 ? $encoding->encode($str) : $str;
 }
 
 1;

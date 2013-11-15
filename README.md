@@ -8,7 +8,6 @@ in your PSGI application
 
     use utf8;
     use Plack::Response::AutoEncode;
-    
 
     my $app = sub {
         my $body = '私は日本人です。';
@@ -18,7 +17,7 @@ in your PSGI application
 
 # DESCRIPTION
 
-Plack::Response::AutoEncode is subclass of Plack::Response. 
+Plack::Response::AutoEncode is subclass of Plack::Response.
 
 When application returns a response that contains "text/\*" in Content-Type header, encode automatically each unencoded content by charset that is in Content-Type header.
 
@@ -26,7 +25,6 @@ For example. If you want to response with Shift\_JIS encoding, you can it as fol
 
     use utf8;
     use Plack::Response::AutoEncode;
-    
 
     my $app = sub {
         my $body = '私は日本人です。';
@@ -45,3 +43,5 @@ it under the same terms as Perl itself.
 # AUTHOR
 
 ytnobody <ytnobody@gmail.com>
+
+moznion

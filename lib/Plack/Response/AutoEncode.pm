@@ -5,7 +5,7 @@ use parent 'Plack::Response';
 use Carp ();
 use Email::MIME::ContentType () ;
 use Encode;
-our $VERSION = "0.01";
+our $VERSION = "0.02";
 
 sub finalize {
     my $self = shift;

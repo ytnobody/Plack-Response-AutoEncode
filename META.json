@@ -71,7 +71,7 @@
          "web" : "https://github.com/ytnobody/Plack-Response-AutoEncode"
       }
    },
-   "version" : "0.01",
+   "version" : "0.02",
    "x_contributors" : [
       "moznion <moznion@gmail.com>"
    ]

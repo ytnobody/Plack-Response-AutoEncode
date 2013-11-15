@@ -2,6 +2,10 @@ Revision history for Perl extension Plack-Response-AutoEncode
 
 {{$NEXT}}
 
+0.02 2013-11-15T08:30:50Z
+    - require perl-string in content-body
+    - force valid charset
+
 0.01 2013-11-15T06:49:18Z
 
     - original version

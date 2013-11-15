@@ -21,6 +21,8 @@ Plack::Response::AutoEncode is subclass of Plack::Response.
 
 When application returns a response that contains "text/\*" in Content-Type header, encode automatically each unencoded content by charset that is in Content-Type header.
 
+You __MUST__ set content-body data in perl-string.
+
 For example. If you want to response with Shift\_JIS encoding, you can it as followings.
 
     use utf8;

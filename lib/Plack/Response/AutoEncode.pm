@@ -76,6 +76,8 @@ in your PSGI application
 
 =head1 DESCRIPTION
 
+B<DO NOT USE THIS MODULE!!!!> This module broke interface of Plack::Response.
+
 Plack::Response::AutoEncode is subclass of Plack::Response.
 
 When application returns a response that contains "text/*" in Content-Type header, encode automatically each unencoded content by charset that is in Content-Type header.
